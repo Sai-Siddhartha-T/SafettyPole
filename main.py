@@ -5,6 +5,17 @@ from fastapi import FastAPI, WebSocket, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
+from fastapi import Form
+
+@app.post("/update")
+async def update(e_field: int = Form(...), current: int = Form(...)):
+    with state.lock:
+        state.e_field = e_field
+        state.current = current
+        state.led_on = e_field > 800 or current > 1000
+        state.buzzer_on = state.led_on
+    return {"status": "ok"}
+
 
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
