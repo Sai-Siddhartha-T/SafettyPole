@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>E-Field Sensor Dashboard</title>
+    <meta charset="utf-8"/>
+    <script src="/static/dashboard.js" defer></script>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 2em; background: #f9f9f9; }
+        .sensor-box { background: #fff; border-radius: 8px; padding: 1.5em; margin-bottom: 1em; box-shadow: 0 2px 8px #ddd;}
+        .status-on { color: #fff; background: #e53935; border-radius: 4px; padding: 0.25em 0.7em; }
+        .status-off { color: #555; background: #c8e6c9; border-radius: 4px; padding: 0.25em 0.7em; }
+        .label { font-weight: bold; font-size: 1.1em; }
+    </style>
+</head>
+<body>
+    <h1>E-Field Sensor Real-Time Dashboard</h1>
+    <div class="sensor-box">
+        <div><span class="label">E-Field Reading:</span> <span id="e_field">-</span></div>
+        <div><span class="label">Current Reading:</span> <span id="current">-</span></div>
+        <div><span class="label">Alarm LED:</span> <span id="led_status" class="status-off">OFF</span></div>
+        <div><span class="label">Buzzer:</span> <span id="buzzer_status" class="status-off">OFF</span></div>
+    </div>
+    <small>Updating in real-time via WebSocket</small>
+</body>
+</html>
