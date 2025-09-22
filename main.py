@@ -7,14 +7,7 @@ from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from fastapi import Form
 
-@app.post("/update")
-async def update(e_field: int = Form(...), current: int = Form(...)):
-    with state.lock:
-        state.e_field = e_field
-        state.current = current
-        state.led_on = e_field > 800 or current > 1000
-        state.buzzer_on = state.led_on
-    return {"status": "ok"}
+ 
 
 
 app = FastAPI()
@@ -98,6 +91,15 @@ async def websocket_endpoint(websocket: WebSocket):
             await asyncio.sleep(1)  # Keep connection open; data sent by simulator
     except Exception:
         manager.disconnect(websocket)
+
+@app.post("/update")
+async def update(e_field: int = Form(...), current: int = Form(...)):
+    with state.lock:
+        state.e_field = e_field
+        state.current = current
+        state.led_on = e_field > 800 or current > 1000
+        state.buzzer_on = state.led_on
+    return {"status": "ok"}
 
 # --- Start simulation in background thread ---
 t = threading.Thread(target=sensor_simulation_loop, daemon=True)
