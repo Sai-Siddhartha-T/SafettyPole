@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🛡️ SafePole Dashboard</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="/static/dashboard.js" defer></script>
+</head>
+<body>
+  <header>
+    <h1>🛡️ SafePole Prototype Dashboard</h1>
+    <div id="status" class="status-badge safe">SYSTEM SAFE</div>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>📊 Sensor Readings</h2>
+      <p>E-Field: <span id="e_field">-</span> V/m</p>
+      <p>Current: <span id="current">-</span> mA</p>
+      <p>Voltage: <span id="voltage">-</span> V</p>
+      <p>GPS: <span id="latitude">-</span>, <span id="longitude">-</span> (±<span id="accuracy">-</span>m)</p>
+      <p>LED: <span id="led_status" class="status-off">OFF</span></p>
+      <p>Buzzer: <span id="buzzer_status" class="status-off">OFF</span></p>
+    </section>
+
+    <section class="card">
+      <h2>📈 Live Chart</h2>
+      <canvas id="sensorChart"></canvas>
+    </section>
+
+    <section class="card">
+      <h2>🚨 Recent Alerts</h2>
+      <ul id="alerts"></ul>
+    </section>
+
+    <section class="card">
+      <h2>⚙️ Controls</h2>
+      <button onclick="sendControl('buzzer_test')">🔊 Test Buzzer</button>
+      <button onclick="sendControl('strobe_test')">💡 Test Strobe</button>
+      <button onclick="sendControl('calibrate')">🎯 Calibrate</button>
+      <button onclick="sendControl('emergency_stop')" class="danger">🚨 Emergency Stop</button>
+    </section>
+
+    <section class="card">
+      <h2>🔧 Configuration</h2>
+      <label>E-Field Threshold: <input type="number" id="efieldThreshold" value="800"></label>
+      <label>Current Threshold: <input type="number" id="currentThreshold" value="1000"></label>
+      <button onclick="updateConfig()">Update Config</button>
+    </section>
+  </main>
+</body>
+</html>

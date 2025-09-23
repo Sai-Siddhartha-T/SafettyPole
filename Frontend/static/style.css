@@ -1,0 +1,14 @@
+body { font-family: 'Segoe UI', sans-serif; background: #1e3c72; color: #fff; padding: 20px; }
+header { text-align: center; margin-bottom: 20px; }
+h1 { font-size: 2rem; margin-bottom: 10px; }
+main { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+.card { background: rgba(255,255,255,0.1); padding: 20px; border-radius: 12px; }
+.status-badge { display: inline-block; padding: 10px; border-radius: 8px; font-weight: bold; }
+.status-badge.safe { background: green; }
+.status-badge.warning { background: orange; }
+.status-badge.danger { background: red; }
+.status-on { color: red; font-weight: bold; }
+.status-off { color: lightgray; }
+button { margin: 5px; padding: 10px 15px; border: none; border-radius: 6px; cursor: pointer; }
+button:hover { opacity: 0.9; }
+button.danger { background: red; color: white; }
